@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE suppressions PUBLIC
+        "-//Puppy Crawl//DTD Suppressions 1.0//EN"
+        "http://www.puppycrawl.com/dtds/suppressions_1_0.dtd">
+
+<suppressions>
+
+    <!-- Don't check JavaDoc on package-info. -->
+    <suppress checks="JavadocStyleCheck" files="package-info.java"/>
+
+    <!-- The '*Application' classes are to configure Spring Boot applications only. -->
+    <suppress checks="HideUtilityClassConstructorCheck" files="[A-Za-z0-9]*Application.java"/>
+
+    <!-- Test -->
+    <suppress files="test/*" checks="JavadocPackageCheck"/>
+
+
+</suppressions>
