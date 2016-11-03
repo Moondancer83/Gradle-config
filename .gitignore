@@ -1,0 +1,8 @@
+# IDE Integration
+.idea/
+
+# Gradle
+.gradle/
+gradle/
+gradlew
+gradlew.bat
