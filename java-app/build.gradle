@@ -1,1 +1,1 @@
-apply from: '../java_base.gradle'
+apply from: "${rootProject.projectDir.path}/config/gradle/java/java_base.gradle"
