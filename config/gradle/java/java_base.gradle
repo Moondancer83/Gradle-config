@@ -1,0 +1,73 @@
+apply from: "${rootProject.projectDir.path}/config/gradle/base.gradle"
+
+// Java
+apply plugin: 'java'
+
+sourceCompatibility = TargetJavaVersion
+targetCompatibility = TargetJavaVersion
+
+logger.lifecycle "Project name: ${group}.${name}-${version}"
+
+// Code Quality
+apply plugin: 'checkstyle'
+apply plugin: 'findbugs'
+apply plugin: 'pmd'
+
+checkstyle {
+    configFile = rootProject.file('config/quality/checkstyle/checkstyle.xml')
+    configProperties.checkstyleConfigDir = configFile.parentFile
+}
+tasks.withType(Checkstyle) {
+    reports {
+        xml.enabled true
+        html.enabled true
+    }
+}
+
+findbugs {
+    excludeFilter = rootProject.file("config/quality/findbugs/findbugs-excludes.xml")
+    excludeBugsFilter = rootProject.file("config/quality/findbugs/findbugs-excludes.xml")
+}
+tasks.withType(FindBugs) {
+    reports {
+        xml.enabled false
+        html.enabled true
+    }
+}
+
+pmd {
+    ruleSetFiles = rootProject.files("config/quality/pmd/pmd.xml")
+}
+
+// Build
+
+jar {
+    baseName = 'gateway-service'
+    version = parent.version
+}
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "net.saliman:gradle-cobertura-plugin:2.3.2"
+    }
+}
+
+apply plugin: net.saliman.gradle.plugin.cobertura.CoberturaPlugin
+
+// Dependency management
+repositories {
+    mavenCentral()
+}
+
+//dependencyManagement {
+//
+//}
+
+//dependencies {
+//
+//}
+
+

@@ -1,0 +1,6 @@
+group ProjectGroup
+version ProjetVersion
+
+apply plugin: 'base'
+apply plugin: 'idea'
+apply plugin: 'eclipse'
